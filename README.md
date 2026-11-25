@@ -113,7 +113,7 @@ para que no compitan.
 ## Desarrollo
 
 ```bash
-git clone https://github.com/OWNER/openlogiflow.git
+git clone https://github.com/sp1k3wh/openlogiflow.git
 cd openlogiflow
 npm ci
 npm start                      # ejecutar desde el código

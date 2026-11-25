@@ -24,7 +24,7 @@
     "electron-builder": "^26.18.0"
   },
   "productName": "OpenLogiFlow",
-  "homepage": "https://github.com/OWNER/openlogiflow",
+  "homepage": "https://github.com/sp1k3wh/openlogiflow",
   "keywords": [
     "logitech",
     "flow",
