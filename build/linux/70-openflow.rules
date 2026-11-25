@@ -1,0 +1,12 @@
+# OpenFlow — permisos mínimos para el usuario con la sesión activa (TAG "uaccess":
+# solo quien está sentado frente al equipo, y solo mientras tenga la sesión abierta).
+
+# HID++ del mouse/receptor Logitech (cambio de canal). Receptor USB y Bluetooth.
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="046d", TAG+="uaccess"
+SUBSYSTEM=="hidraw", KERNELS=="0005:046D:*", TAG+="uaccess"
+
+# Saber cuándo el mouse Logitech vuelve a este equipo (solo mouse Logitech, nunca teclados)
+SUBSYSTEM=="input", KERNEL=="event*", ENV{ID_INPUT_MOUSE}=="1", ATTRS{id/vendor}=="046d", TAG+="uaccess"
+
+# Dispositivos virtuales para colocar el cursor y escribir con el teclado remoto
+KERNEL=="uinput", SUBSYSTEM=="misc", TAG+="uaccess", OPTIONS+="static_node=uinput"

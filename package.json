@@ -1,0 +1,121 @@
+{
+  "name": "openflow",
+  "version": "1.0.0",
+  "description": "Usa un mouse Logitech (y un teclado) entre Linux y Windows, como Logi Options+ Flow. No afiliado a Logitech.",
+  "main": "src/main/index.js",
+  "author": "OpenFlow contributors",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "icons": "electron scripts/make-icons.js",
+    "agent": "node scripts/flow-agent.js",
+    "dist:linux": "electron-builder --linux deb AppImage",
+    "dist:win": "electron-builder --win nsis",
+    "dist": "electron-builder"
+  },
+  "dependencies": {
+    "electron-store": "^8.1.0",
+    "koffi": "^2.16.4",
+    "node-hid": "^3.1.0"
+  },
+  "devDependencies": {
+    "electron": "^45.1.0",
+    "electron-builder": "^26.18.0"
+  },
+  "productName": "OpenFlow",
+  "homepage": "https://github.com/OWNER/openflow-logi",
+  "keywords": [
+    "logitech",
+    "flow",
+    "mouse",
+    "hidpp",
+    "easy-switch",
+    "linux",
+    "windows",
+    "kvm"
+  ],
+  "build": {
+    "appId": "io.github.openflow",
+    "productName": "OpenFlow",
+    "copyright": "OpenFlow contributors — MIT",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "src/**/*",
+      "package.json",
+      "!**/*.map"
+    ],
+    "asarUnpack": [
+      "src/main/flow-link/win-capture-helper.cs"
+    ],
+    "linux": {
+      "target": [
+        "deb",
+        "AppImage"
+      ],
+      "category": "Utility",
+      "icon": "build/icon.png",
+      "executableName": "openflow",
+      "executableArgs": [
+        "--ozone-platform=x11"
+      ],
+      "synopsis": "Un mouse Logitech para dos equipos (Linux ↔ Windows)",
+      "desktop": {
+        "entry": {
+          "Name": "OpenFlow",
+          "Comment": "Comparte un mouse Logitech entre Linux y Windows",
+          "StartupWMClass": "OpenFlow",
+          "Keywords": "logitech;flow;mouse;teclado;"
+        }
+      },
+      "extraResources": [
+        {
+          "from": "build/linux",
+          "to": "linux",
+          "filter": [
+            "**/*"
+          ]
+        }
+      ],
+      "maintainer": "OpenFlow contributors <openflow@users.noreply.github.com>",
+      "syncDesktopName": true
+    },
+    "deb": {
+      "afterInstall": "build/linux/after-install.sh",
+      "afterRemove": "build/linux/after-remove.sh",
+      "depends": [
+        "libnotify4",
+        "libxtst6",
+        "libnss3",
+        "libudev1"
+      ]
+    },
+    "appImage": {
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "OpenFlow",
+      "artifactName": "${productName}-Setup-${version}.${ext}"
+    }
+  },
+  "desktopName": "openflow.desktop"
+}

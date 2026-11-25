@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#5c6bc0"/>
+      <stop offset="100%" style="stop-color:#7986cb"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="12" fill="url(#bg)"/>
+  <!-- Mouse icon -->
+  <ellipse cx="32" cy="28" rx="10" ry="14" fill="#fff" opacity="0.9"/>
+  <line x1="32" y1="14" x2="32" y2="6" stroke="#fff" stroke-width="2"/>
+  <!-- Keyboard icon -->
+  <rect x="18" y="44" width="28" height="14" rx="2" fill="#fff" opacity="0.7"/>
+  <circle cx="24" cy="50" r="1.5" fill="#5c6bc0"/>
+  <circle cx="32" cy="50" r="1.5" fill="#5c6bc0"/>
+  <circle cx="40" cy="50" r="1.5" fill="#5c6bc0"/>
+  <!-- Flow arrows -->
+  <path d="M10 32 L4 28 L4 36 Z" fill="#fff" opacity="0.5"/>
+  <path d="M54 32 L60 28 L60 36 Z" fill="#fff" opacity="0.5"/>
+</svg>
