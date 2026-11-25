@@ -55,6 +55,7 @@ contextBridge.exposeInMainWorld('logiAPI', {
   setFlowOptions: (o) => ipcRenderer.invoke('FLOWLINK_SET_OPTIONS', o),
   generatePairCode: () => ipcRenderer.invoke('FLOWLINK_GENERATE_CODE'),
   getAppSettings: () => ipcRenderer.invoke('APP_GET_SETTINGS'),
+  openManual: () => ipcRenderer.send('OPEN_MANUAL'),
   setAppSettings: (s) => ipcRenderer.invoke('APP_SET_SETTINGS', s),
   onFlowLinkStatus: (cb) => {
     const handler = (_, s) => cb(s);

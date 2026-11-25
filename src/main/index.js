@@ -274,6 +274,8 @@ function setupIPC() {
     return { ok: true, status: flowLinkStatus() };
   });
 
+  ipcMain.on('OPEN_MANUAL', () => openManualWindow());
+
   ipcMain.handle('FLOWLINK_GENERATE_CODE', () => String(crypto.randomInt(0, 1e6)).padStart(6, '0'));
 
   ipcMain.handle('APP_GET_SETTINGS', () => ({
@@ -353,6 +355,10 @@ function showMainWindow() {
   mainWindow.focus();
 }
 
+function openManualWindow() {
+  require('./manual').openManual(path.join(__dirname, '../renderer/assets/icon.png'));
+}
+
 function createTray() {
   const img = nativeImage.createFromPath(path.join(__dirname, '../renderer/assets/icon.png'))
     .resize({ width: process.platform === 'win32' ? 16 : 22 });
@@ -367,6 +373,7 @@ function createTray() {
       { label: estado, enabled: false },
       { type: 'separator' },
       { label: 'Abrir OpenLogiFlow', click: showMainWindow },
+      { label: 'Manual de uso', click: openManualWindow },
       { label: 'Salir', click: () => { quitting = true; app.quit(); } },
     ]));
   };

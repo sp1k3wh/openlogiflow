@@ -25,6 +25,9 @@ viajan con él.
 Todo el tráfico entre equipos va **cifrado (AES‑256‑GCM)** con una llave derivada del
 código de emparejamiento, y solo se acepta lo que viene del equipo emparejado.
 
+> 📖 **Manual de uso paso a paso:** [docs/MANUAL.md](docs/MANUAL.md) (también disponible
+> dentro de la app: *Configuración → Manual de uso*, o en el menú de la bandeja).
+
 ## Requisitos
 
 - **Un mouse Logitech con Easy‑Switch** (varios canales) y la función HID++

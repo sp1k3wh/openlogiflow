@@ -190,6 +190,9 @@
     const r = await logiAPI.setAppSettings({ startOnLogin: e.target.checked });
     e.target.checked = !!r.startOnLogin;
   });
+  for (const id of ['open-manual', 'open-manual-flow']) {
+    document.getElementById(id)?.addEventListener('click', (e) => { e.preventDefault(); logiAPI.openManual(); });
+  }
   document.getElementById('minimize-to-tray').addEventListener('change', (e) => {
     logiAPI.setAppSettings({ closeToTray: e.target.checked });
   });

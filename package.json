@@ -45,6 +45,7 @@
     },
     "files": [
       "src/**/*",
+      "docs/MANUAL.md",
       "package.json",
       "!**/*.map"
     ],
