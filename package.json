@@ -67,7 +67,7 @@
         "entry": {
           "Name": "OpenFlow",
           "Comment": "Comparte un mouse Logitech entre Linux y Windows",
-          "StartupWMClass": "OpenFlow",
+          "StartupWMClass": "openflow",
           "Keywords": "logitech;flow;mouse;teclado;"
         }
       },

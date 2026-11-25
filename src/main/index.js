@@ -68,6 +68,8 @@ function launchCommand() {
   const exe = process.env.APPIMAGE || process.execPath;
   const args = app.isPackaged ? [] : [app.getAppPath()];
   if (process.platform === 'linux') args.push('--ozone-platform=x11');
+  // Sin el sandbox SUID (AppImage o build sin instalar) hay que conservar esta opción
+  if (process.argv.includes('--no-sandbox')) args.push('--no-sandbox');
   return { exe, args };
 }
 const LINUX_AUTOSTART = path.join(os.homedir(), '.config', 'autostart', 'openflow.desktop');
@@ -93,7 +95,7 @@ function setStartOnLogin(on) {
     '[Desktop Entry]', 'Type=Application', 'Name=OpenFlow',
     'Comment=Inicia OpenFlow oculto en la bandeja',
     `Exec=${[exe, ...args, '--hidden'].map(q).join(' ')}`,
-    'Icon=openflow', 'Terminal=false', 'X-GNOME-Autostart-enabled=true', 'X-GNOME-Autostart-Delay=5', '',
+    `Icon=${app.isPackaged && !process.env.APPIMAGE && fs.existsSync('/usr/share/icons/hicolor') ? 'openflow' : path.join(__dirname, '../renderer/assets/icon.png')}`, 'Terminal=false', 'X-GNOME-Autostart-enabled=true', 'X-GNOME-Autostart-Delay=5', '',
   ].join('\n'));
   return true;
 }
