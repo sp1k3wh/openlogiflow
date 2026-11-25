@@ -1,4 +1,4 @@
-# OpenFlow — permisos mínimos para el usuario con la sesión activa (TAG "uaccess":
+# OpenLogiFlow — permisos mínimos para el usuario con la sesión activa (TAG "uaccess":
 # solo quien está sentado frente al equipo, y solo mientras tenga la sesión abierta).
 
 # HID++ del mouse/receptor Logitech (cambio de canal). Receptor USB y Bluetooth.

@@ -1,5 +1,5 @@
 /**
- * Protocolo propio de OpenFlow (v1). Ver docs/PROTOCOL.md.
+ * Protocolo propio de OpenLogiFlow (v1). Ver docs/PROTOCOL.md.
  *
  * Paquete UDP de entrada:
  *   'L' 'F' ver(u8) | nonce(12) | AES-256-GCM(cuerpo) | tag(16)

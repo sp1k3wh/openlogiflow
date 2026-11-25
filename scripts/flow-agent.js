@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Agente de OpenFlow sin interfaz (Windows, o Linux para pruebas).
+ * Agente de OpenLogiFlow sin interfaz (Windows, o Linux para pruebas).
  *   node scripts/flow-agent.js --code 123456 [--side left|right|top|bottom] [--peer <ip-del-otro-equipo>]
  * --side = dónde está el otro equipo visto desde este. Se guarda y se sincroniza con
  * el otro equipo (si lo cambias en la app de Linux, este agente lo adopta).

@@ -1,6 +1,6 @@
-# OpenFlow — protocolo v1
+# OpenLogiFlow — protocolo v1
 
-Protocolo propio entre dos equipos con OpenFlow. **No** usa ni imita el protocolo de
+Protocolo propio entre dos equipos con OpenLogiFlow. **No** usa ni imita el protocolo de
 Logi Options+ (puertos 59869–59871); solo se escuchan sus anuncios para mostrar, de forma
 informativa, qué equipos tienen Options+ en la red.
 
@@ -86,11 +86,11 @@ luego:    imagen PNG (1 frame) · archivos en frames ≤ 1 MiB, en orden
 
 Se envía cuando el cursor deja un equipo (por el borde o porque el otro recuperó el mouse),
 solo si el contenido cambió desde el último envío. Las rutas de archivos se sanean (sin
-`..`, sin rutas absolutas) y se guardan en `Descargas/OpenFlow/<fecha>/`.
+`..`, sin rutas absolutas) y se guardan en `Descargas/OpenLogiFlow/<fecha>/`.
 
 ## Permisos
 
-**Linux** (`build/linux/70-openflow.rules`, TAG `uaccess` = solo el usuario con sesión activa):
+**Linux** (`build/linux/70-openlogiflow.rules`, TAG `uaccess` = solo el usuario con sesión activa):
 
 - `hidraw` de Logitech (USB y Bluetooth) → HID++.
 - `input/event*` **solo de mouse Logitech** → saber cuándo el mouse vuelve con Easy‑Switch.
@@ -98,4 +98,4 @@ solo si el contenido cambió desde el último envío. Las rutas de archivos se s
 
 **Windows**: corre en la sesión del usuario (no necesita administrador). Los hooks de bajo
 nivel los instala un ayudante en C# (`win-capture-helper.cs`) que se compila la primera vez
-con el compilador incluido en Windows. Firewall: permitir OpenFlow en redes privadas.
+con el compilador incluido en Windows. Firewall: permitir OpenLogiFlow en redes privadas.

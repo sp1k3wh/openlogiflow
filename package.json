@@ -1,9 +1,9 @@
 {
-  "name": "openflow",
+  "name": "openlogiflow",
   "version": "1.0.0",
   "description": "Usa un mouse Logitech (y un teclado) entre Linux y Windows, como Logi Options+ Flow. No afiliado a Logitech.",
   "main": "src/main/index.js",
-  "author": "OpenFlow contributors",
+  "author": "OpenLogiFlow contributors",
   "license": "MIT",
   "scripts": {
     "start": "electron .",
@@ -23,8 +23,8 @@
     "electron": "^45.1.0",
     "electron-builder": "^26.18.0"
   },
-  "productName": "OpenFlow",
-  "homepage": "https://github.com/OWNER/openflow-logi",
+  "productName": "OpenLogiFlow",
+  "homepage": "https://github.com/OWNER/openlogiflow",
   "keywords": [
     "logitech",
     "flow",
@@ -36,9 +36,9 @@
     "kvm"
   ],
   "build": {
-    "appId": "io.github.openflow",
-    "productName": "OpenFlow",
-    "copyright": "OpenFlow contributors — MIT",
+    "appId": "io.github.openlogiflow",
+    "productName": "OpenLogiFlow",
+    "copyright": "OpenLogiFlow contributors — MIT",
     "directories": {
       "output": "dist",
       "buildResources": "build"
@@ -58,16 +58,16 @@
       ],
       "category": "Utility",
       "icon": "build/icon.png",
-      "executableName": "openflow",
+      "executableName": "openlogiflow",
       "executableArgs": [
         "--ozone-platform=x11"
       ],
       "synopsis": "Un mouse Logitech para dos equipos (Linux ↔ Windows)",
       "desktop": {
         "entry": {
-          "Name": "OpenFlow",
+          "Name": "OpenLogiFlow",
           "Comment": "Comparte un mouse Logitech entre Linux y Windows",
-          "StartupWMClass": "openflow",
+          "StartupWMClass": "openlogiflow",
           "Keywords": "logitech;flow;mouse;teclado;"
         }
       },
@@ -80,7 +80,7 @@
           ]
         }
       ],
-      "maintainer": "OpenFlow contributors <openflow@users.noreply.github.com>",
+      "maintainer": "OpenLogiFlow contributors <openlogiflow@users.noreply.github.com>",
       "syncDesktopName": true
     },
     "deb": {
@@ -113,9 +113,9 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "OpenFlow",
+      "shortcutName": "OpenLogiFlow",
       "artifactName": "${productName}-Setup-${version}.${ext}"
     }
   },
-  "desktopName": "openflow.desktop"
+  "desktopName": "openlogiflow.desktop"
 }

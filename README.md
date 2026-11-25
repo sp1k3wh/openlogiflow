@@ -1,23 +1,23 @@
-# OpenFlow
+# OpenLogiFlow
 
 **Usa un mouse Logitech —y el teclado de Windows— en dos equipos, Linux y Windows,
 como lo hace Logi Options+ Flow.** Llevas el cursor al borde de la pantalla y el
 mouse cambia solo de canal al otro equipo; el portapapeles y los archivos copiados
 viajan con él.
 
-> OpenFlow es un proyecto independiente. **No está afiliado, respaldado ni
+> OpenLogiFlow es un proyecto independiente. **No está afiliado, respaldado ni
 > patrocinado por Logitech.** "Logitech", "Logi Options+" y "Flow" son marcas de
-> sus respectivos dueños. OpenFlow no usa ni modifica Logi Options+: tiene su propio
+> sus respectivos dueños. OpenLogiFlow no usa ni modifica Logi Options+: tiene su propio
 > protocolo y habla con el mouse con comandos HID++ estándar.
 
 ## Qué hace
 
 | Función | Cómo |
 |---|---|
-| **Cambio de equipo por el borde** | Al tocar el borde hacia el otro equipo, OpenFlow le ordena al mouse (HID++ `CHANGE_HOST`) pasar al canal de ese equipo. El cursor aparece a la misma altura. El mouse **siempre se mueve en local**: nada del mouse viaja por la red, no hay lag. |
+| **Cambio de equipo por el borde** | Al tocar el borde hacia el otro equipo, OpenLogiFlow le ordena al mouse (HID++ `CHANGE_HOST`) pasar al canal de ese equipo. El cursor aparece a la misma altura. El mouse **siempre se mueve en local**: nada del mouse viaja por la red, no hay lag. |
 | **Teclado compartido** | Mientras el cursor está en el equipo Linux, el teclado del equipo Windows escribe allí. (El teclado de Linux no se comparte.) |
 | **Portapapeles** | Texto, HTML e imágenes viajan con el cursor: copias en un equipo, pegas en el otro. |
-| **Archivos** | Copias archivos o carpetas en el Explorador/Nautilus, pasas el cursor, pegas con Ctrl+V. Se guardan en `Descargas/OpenFlow`. Límite: 2 GB por envío. |
+| **Archivos** | Copias archivos o carpetas en el Explorador/Nautilus, pasas el cursor, pegas con Ctrl+V. Se guardan en `Descargas/OpenLogiFlow`. Límite: 2 GB por envío. |
 | **Disposición** | Eliges en la app en qué lado está el otro equipo (izquierda, derecha, arriba, abajo). Se sincroniza sola. |
 | **Easy-Switch a mano** | Si cambias de canal con el botón del mouse, los equipos lo notan y el teclado sigue al mouse. |
 | **Equipo apagado** | Sin el otro equipo, Flow se desactiva solo y se reactiva cuando vuelve. |
@@ -41,7 +41,7 @@ Descarga los instaladores de la página de [Releases](../../releases).
 ### Linux (.deb — Ubuntu, Debian, Mint…)
 
 ```bash
-sudo apt install ./openflow_1.0.0_amd64.deb
+sudo apt install ./openlogiflow_1.0.0_amd64.deb
 ```
 
 El paquete instala los permisos necesarios (regla udev). Si el mouse ya estaba
@@ -50,8 +50,8 @@ conectado, cámbialo de canal o reconéctalo una vez.
 ### Linux (AppImage — otras distribuciones)
 
 ```bash
-chmod +x OpenFlow-1.0.0-x86_64.AppImage
-./OpenFlow-1.0.0-x86_64.AppImage
+chmod +x OpenLogiFlow-1.0.0-x86_64.AppImage
+./OpenLogiFlow-1.0.0-x86_64.AppImage
 ```
 
 La AppImage no puede instalar permisos sola. Una vez, descarga
@@ -63,13 +63,13 @@ sudo sh install-permissions.sh
 
 ### Windows
 
-Ejecuta `OpenFlow-Setup-1.0.0.exe` (no necesita administrador). Como el instalador no
+Ejecuta `OpenLogiFlow-Setup-1.0.0.exe` (no necesita administrador). Como el instalador no
 está firmado, Windows SmartScreen puede avisar: **Más información → Ejecutar de todas
-formas**. La primera vez que abras OpenFlow, Windows preguntará por el firewall:
+formas**. La primera vez que abras OpenLogiFlow, Windows preguntará por el firewall:
 permite el acceso en **redes privadas**.
 
 > Si tu red está marcada como **Pública**, cámbiala a Privada
-> (Configuración → Red e Internet → propiedades de la red) o OpenFlow no podrá
+> (Configuración → Red e Internet → propiedades de la red) o OpenLogiFlow no podrá
 > recibir conexiones.
 
 ## Configuración (una sola vez)
@@ -77,14 +77,14 @@ permite el acceso en **redes privadas**.
 1. **Empareja los canales del mouse**: con el botón Easy‑Switch, empareja el canal 1, 2
    o 3 con cada equipo (Logi Options+, Solaar o el Bluetooth del sistema). Por ejemplo:
    canal 2 → Windows, canal 3 → Linux.
-2. Abre OpenFlow en los dos equipos → pestaña **Flow**.
+2. Abre OpenLogiFlow en los dos equipos → pestaña **Flow**.
 3. En un equipo pulsa **Generar código**; escribe el **mismo código** en el otro y pulsa
    **Guardar** en los dos.
 4. En **Disposición de pantallas**, haz clic donde está el otro equipo. Basta con hacerlo
    en uno: el otro se actualiza solo.
-5. **Canal del mouse**: déjalo en *Automático* (OpenFlow le pregunta al mouse en qué canal
+5. **Canal del mouse**: déjalo en *Automático* (OpenLogiFlow le pregunta al mouse en qué canal
    está cada equipo) o fíjalo a mano si hace falta.
-6. En **Configuración**, activa **Iniciar OpenFlow al iniciar sesión**.
+6. En **Configuración**, activa **Iniciar OpenLogiFlow al iniciar sesión**.
 
 Listo: lleva el cursor al borde.
 
@@ -99,26 +99,26 @@ Listo: lleva el cursor al borde.
 
 | Síntoma | Qué revisar |
 |---|---|
-| "Flow en espera: no se encuentra el otro equipo" | Los dos con OpenFlow abierto y el mismo código; firewall de Windows en red privada; misma red. |
+| "Flow en espera: no se encuentra el otro equipo" | Los dos con OpenLogiFlow abierto y el mismo código; firewall de Windows en red privada; misma red. |
 | "Otro código de emparejamiento" | El código no es igual en los dos equipos. |
 | El cursor no pasa al otro equipo | Pestaña Flow → *Canal del mouse*: el canal de cada equipo debe ser el correcto. En Linux, faltan permisos si la app lo avisa (ver instalación). |
 | El mouse va al canal equivocado | Fija el canal a mano en *Canal del mouse*. |
 | Una tecla quedó repitiéndose | Se suelta sola en menos de 1 s; si la red se corta, en 1.5 s. |
-| Logs | Linux: `~/.config/OpenFlow/logs/main.log` · Windows: `%APPDATA%\OpenFlow\logs\main.log` |
+| Logs | Linux: `~/.config/OpenLogiFlow/logs/main.log` · Windows: `%APPDATA%\OpenLogiFlow\logs\main.log` |
 
-Solaar (Linux) y Logi Options+ (Windows) pueden seguir instalados; OpenFlow verifica cada
+Solaar (Linux) y Logi Options+ (Windows) pueden seguir instalados; OpenLogiFlow verifica cada
 respuesta del mouse para no confundirse con las de ellos. Desactiva el *Flow* de Options+
 para que no compitan.
 
 ## Desarrollo
 
 ```bash
-git clone https://github.com/OWNER/openflow-logi.git
-cd openflow-logi
+git clone https://github.com/OWNER/openlogiflow.git
+cd openlogiflow
 npm ci
 npm start                      # ejecutar desde el código
 npm run dist:linux             # → dist/*.deb y dist/*.AppImage
-npm run dist:win               # → dist/OpenFlow-Setup-*.exe (ejecutar en Windows)
+npm run dist:win               # → dist/OpenLogiFlow-Setup-*.exe (ejecutar en Windows)
 ```
 
 Desde el código en Linux, instala los permisos con `sudo sh build/linux/install-permissions.sh`.

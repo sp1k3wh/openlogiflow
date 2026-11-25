@@ -111,7 +111,7 @@
     if (!st || !st.hasCode) return set(false, 'Flow sin configurar', 'Escribe el código de emparejamiento abajo, el mismo en los dos equipos');
     if (st.error) return set(false, 'Flow con error', st.error);
     if (opts.enabled === false) return set(false, 'Flow desactivado', 'Activa "Cambio de Host" para usar el mouse en los dos equipos');
-    if (!st.peer) return set(false, 'Flow en espera', 'No se encuentra el otro equipo: ¿está encendido y con OpenFlow abierto?');
+    if (!st.peer) return set(false, 'Flow en espera', 'No se encuentra el otro equipo: ¿está encendido y con OpenLogiFlow abierto?');
 
     let d = st.state === 'local' ? `Conectado con ${st.peer.name} · el cursor está aquí`
       : `Conectado con ${st.peer.name} · el cursor está en ${st.peer.name}`;
@@ -128,17 +128,17 @@
     const rows = [];
     if (st.peer) {
       const where = st.state === 'local' ? 'cursor aquí' : 'cursor allá';
-      rows.push({ icon: '🖥️', name: st.peer.name, sub: `${st.peer.address} · OpenFlow · canal ${(st.peerHost ?? 0) + 1}`, status: `Conectado (${where})`, ok: true });
+      rows.push({ icon: '🖥️', name: st.peer.name, sub: `${st.peer.address} · OpenLogiFlow · canal ${(st.peerHost ?? 0) + 1}`, status: `Conectado (${where})`, ok: true });
     }
     if (st.mismatch && (!st.peer || st.mismatch.address !== st.peer.address)) {
-      rows.push({ icon: '🔒', name: st.mismatch.name, sub: `${st.mismatch.address} · OpenFlow`, status: 'Otro código de emparejamiento', ok: false });
+      rows.push({ icon: '🔒', name: st.mismatch.name, sub: `${st.mismatch.address} · OpenLogiFlow`, status: 'Otro código de emparejamiento', ok: false });
     }
     for (const p of optionsPlusPeers) {
       if (st.peer && p.address === st.peer.address) continue; // es el mismo equipo
       rows.push({ icon: '💻', name: p.name || p.address, sub: `${p.address} · Logi Options+`, status: 'Options+ (no compatible)', ok: false });
     }
     if (!rows.length) {
-      listEl.innerHTML = '<div class="empty-state small"><p>No se encontraron otros equipos con OpenFlow</p></div>';
+      listEl.innerHTML = '<div class="empty-state small"><p>No se encontraron otros equipos con OpenLogiFlow</p></div>';
       return;
     }
     listEl.innerHTML = rows.map((r) => `

@@ -457,7 +457,7 @@ class FlowController extends EventEmitter {
     const path = require('path');
     this.transferServer = new TransferServer({
       key: this.link.key,
-      destDir: () => this.options.downloadDir || path.join(os.homedir(), 'Downloads', 'OpenFlow'),
+      destDir: () => this.options.downloadDir || path.join(os.homedir(), 'Downloads', 'OpenLogiFlow'),
       isPeer: (addr) => !!this.peer && this.peer.address === addr,
       maxBytes: this.options.maxFileBytes,
       log: this.log,

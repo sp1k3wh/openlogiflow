@@ -1,5 +1,5 @@
 /**
- * FlowLink — red de OpenFlow: descubre el otro equipo y mueve los
+ * FlowLink — red de OpenLogiFlow: descubre el otro equipo y mueve los
  * mensajes de entrada cifrados entre los dos. No depende de Electron.
  *
  * Eventos:

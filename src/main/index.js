@@ -13,7 +13,7 @@ const fs = require('fs');
 if (process.platform === 'linux'
   && (process.env.WAYLAND_DISPLAY || process.env.XDG_SESSION_TYPE === 'wayland')
   && !process.argv.some((a) => a.startsWith('--ozone-platform'))
-  && !process.env.OPENFLOW_NO_RELAUNCH) {
+  && !process.env.OPENLOGIFLOW_NO_RELAUNCH) {
   app.relaunch({
     execPath: process.env.APPIMAGE || process.execPath,
     args: [...process.argv.slice(1), '--ozone-platform=x11'],
@@ -27,7 +27,7 @@ if (!app.requestSingleInstanceLock()) {
   process.exit(0);
 }
 const START_HIDDEN = process.argv.includes('--hidden');
-const APP_ID = 'io.github.openflow';
+const APP_ID = 'io.github.openlogiflow';
 if (process.platform === 'win32') app.setAppUserModelId(APP_ID); // notificaciones de Windows
 let tray = null;
 let quitting = false;
@@ -47,12 +47,15 @@ let quitting = false;
   }
 }
 
-// Migración: las versiones de desarrollo guardaban la configuración en "logitech-flow"
+// Migración: versiones anteriores guardaban la configuración como "OpenFlow" o "logitech-flow"
 {
-  const newFile = path.join(app.getPath('userData'), 'openflow.json');
-  const oldFile = path.join(app.getPath('appData'), 'logitech-flow', 'logitech-flow.json');
+  const newFile = path.join(app.getPath('userData'), 'openlogiflow.json');
+  const oldFile = [
+    path.join(app.getPath('appData'), 'OpenFlow', 'openflow.json'),
+    path.join(app.getPath('appData'), 'logitech-flow', 'logitech-flow.json'),
+  ].find((f) => fs.existsSync(f));
   try {
-    if (!fs.existsSync(newFile) && fs.existsSync(oldFile)) {
+    if (!fs.existsSync(newFile) && oldFile) {
       fs.mkdirSync(path.dirname(newFile), { recursive: true });
       fs.copyFileSync(oldFile, newFile);
       console.log('[Config] Configuración anterior migrada a', newFile);
@@ -60,7 +63,7 @@ let quitting = false;
   } catch (e) { console.error('[Config] Migración:', e.message); }
 }
 
-const store = new Store({ name: 'openflow', cwd: app.getPath('userData') });
+const store = new Store({ name: 'openlogiflow', cwd: app.getPath('userData') });
 
 // === Inicio con la sesión ===
 /** Comando para arrancar esta misma app (instalada o desde el código fuente) */
@@ -72,7 +75,7 @@ function launchCommand() {
   if (process.argv.includes('--no-sandbox')) args.push('--no-sandbox');
   return { exe, args };
 }
-const LINUX_AUTOSTART = path.join(os.homedir(), '.config', 'autostart', 'openflow.desktop');
+const LINUX_AUTOSTART = path.join(os.homedir(), '.config', 'autostart', 'openlogiflow.desktop');
 
 function getStartOnLogin() {
   if (process.platform === 'win32') {
@@ -92,10 +95,10 @@ function setStartOnLogin(on) {
   const q = (a) => (/[\s"]/.test(a) ? `"${a.replace(/"/g, '\\"')}"` : a);
   fs.mkdirSync(path.dirname(LINUX_AUTOSTART), { recursive: true });
   fs.writeFileSync(LINUX_AUTOSTART, [
-    '[Desktop Entry]', 'Type=Application', 'Name=OpenFlow',
-    'Comment=Inicia OpenFlow oculto en la bandeja',
+    '[Desktop Entry]', 'Type=Application', 'Name=OpenLogiFlow',
+    'Comment=Inicia OpenLogiFlow oculto en la bandeja',
     `Exec=${[exe, ...args, '--hidden'].map(q).join(' ')}`,
-    `Icon=${app.isPackaged && !process.env.APPIMAGE && fs.existsSync('/usr/share/icons/hicolor') ? 'openflow' : path.join(__dirname, '../renderer/assets/icon.png')}`, 'Terminal=false', 'X-GNOME-Autostart-enabled=true', 'X-GNOME-Autostart-Delay=5', '',
+    `Icon=${app.isPackaged && !process.env.APPIMAGE && fs.existsSync('/usr/share/icons/hicolor') ? 'openlogiflow' : path.join(__dirname, '../renderer/assets/icon.png')}`, 'Terminal=false', 'X-GNOME-Autostart-enabled=true', 'X-GNOME-Autostart-Delay=5', '',
   ].join('\n'));
   return true;
 }
@@ -110,7 +113,7 @@ let optionsPlusDiscovery = null; // escucha anuncios de Logi Options+ (informati
 const FLOW_OPTION_KEYS = ['enabled', 'clipboard', 'files', 'keyboard'];
 function getFlowOptions() {
   const o = { enabled: true, clipboard: true, files: true, keyboard: true, ...store.get('flowLink.options', {}) };
-  o.downloadDir = path.join(app.getPath('downloads'), 'OpenFlow');
+  o.downloadDir = path.join(app.getPath('downloads'), 'OpenLogiFlow');
   return o;
 }
 function setFlowOptions(o = {}) {
@@ -319,7 +322,7 @@ function createMainWindow() {
     height: 700,
     minWidth: 600,
     minHeight: 500,
-    title: 'OpenFlow',
+    title: 'OpenLogiFlow',
     icon: path.join(__dirname, '../renderer/assets/icon.png'),
     show: false,
     webPreferences: {
@@ -354,16 +357,16 @@ function createTray() {
   const img = nativeImage.createFromPath(path.join(__dirname, '../renderer/assets/icon.png'))
     .resize({ width: process.platform === 'win32' ? 16 : 22 });
   tray = new Tray(img);
-  tray.setToolTip('OpenFlow');
+  tray.setToolTip('OpenLogiFlow');
   const update = () => {
     const st = flowLinkStatus();
     const estado = !st.hasCode ? 'Flow sin configurar'
       : st.peer ? `Flow activo con ${st.peer.name}` : 'Flow desactivado (sin el otro equipo)';
-    tray.setToolTip(`OpenFlow — ${estado}`);
+    tray.setToolTip(`OpenLogiFlow — ${estado}`);
     tray.setContextMenu(Menu.buildFromTemplate([
       { label: estado, enabled: false },
       { type: 'separator' },
-      { label: 'Abrir OpenFlow', click: showMainWindow },
+      { label: 'Abrir OpenLogiFlow', click: showMainWindow },
       { label: 'Salir', click: () => { quitting = true; app.quit(); } },
     ]));
   };
@@ -459,7 +462,7 @@ function startFlowLink() {
       const { Notification } = require('electron');
       if (!Notification.isSupported()) return;
       const n = new Notification({
-        title: 'OpenFlow',
+        title: 'OpenLogiFlow',
         body: `${count} elemento(s) recibido(s) de ${from || 'el otro equipo'}. Ya están en el portapapeles: pega con Ctrl+V.`,
         icon: path.join(__dirname, '../renderer/assets/icon.png'),
       });
