@@ -1,6 +1,6 @@
 {
   "name": "openlogiflow",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Usa un mouse Logitech (y un teclado) entre Linux y Windows, como Logi Options+ Flow. No afiliado a Logitech.",
   "main": "src/main/index.js",
   "author": "OpenLogiFlow contributors",
@@ -116,7 +116,8 @@
       "createStartMenuShortcut": true,
       "shortcutName": "OpenLogiFlow",
       "artifactName": "${productName}-Setup-${version}.${ext}"
-    }
+    },
+    "npmRebuild": false
   },
   "desktopName": "openlogiflow.desktop"
 }

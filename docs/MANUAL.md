@@ -45,14 +45,14 @@ portapapeles, todo cifrado.
 terminal:
 
 ```bash
-sudo apt install ./openlogiflow_1.0.0_amd64.deb
+sudo apt install ./openlogiflow_1.0.1_amd64.deb
 ```
 
 **Otras distribuciones** — descarga `OpenLogiFlow-X.Y.Z-x86_64.AppImage`:
 
 ```bash
-chmod +x OpenLogiFlow-1.0.0-x86_64.AppImage
-./OpenLogiFlow-1.0.0-x86_64.AppImage
+chmod +x OpenLogiFlow-1.0.1-x86_64.AppImage
+./OpenLogiFlow-1.0.1-x86_64.AppImage
 ```
 
 Con la AppImage, instala una vez los permisos (el .deb lo hace solo). Descarga la carpeta
